@@ -25,8 +25,7 @@ class TelegramCheckerBot:
             self.config['phone'] = validate_phone_number(input("Enter your phone number (with country code): +8801775179605"))
             save_config(self.config)
 
-        self.client = TelegramClient('telegram_bot_session', self.config['api_id'], self.config['api_hash'])
-        await self.client.connect()
+        self.bot_client = TelegramClient('bot_session', self.config['api_id'], self.config['api_hash']).start(bot_token='7066548759:AAFvZ-tEuz0tOeZS_hHPU-rRBcnQzgi8pjQ')
         
         if not await self.client.is_user_authorized():
             await self.client.send_code_request(self.config['phone'])
